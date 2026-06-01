@@ -70,7 +70,7 @@ st.markdown("""
 # ─────────────────────────────────────────────
 @st.cache_resource
 def load_model():
-    model = keras.models.load_model("D:\\ML-\\ambulance_siren_model.h5")
+    model = keras.models.load_model("ambulance_siren_model.h5")
     return model
 
 # ─────────────────────────────────────────────
