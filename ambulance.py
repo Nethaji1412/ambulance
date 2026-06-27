@@ -90,7 +90,7 @@ DEMO_PATH  = os.path.join(BASE_DIR, "police-siren-sound-effect-240674.mp3")
 
 @st.cache_resource
 def load_siren_model():
-    return load_model(MODEL_PATH)
+    return load_model("ambulance_siren_model.h5")
 
 try:
     model = load_siren_model()
