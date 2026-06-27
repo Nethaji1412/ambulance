@@ -90,7 +90,7 @@ DEMO_PATH  = os.path.join(BASE_DIR, "police-siren-sound-effect-240674.mp3")
 
 @st.cache_resource
 def load_siren_model():
-    return load_model("ambulance_siren_model.h5")
+    return load_model(MODEL_PATH)
 
 try:
     model = load_siren_model()
@@ -320,16 +320,8 @@ if audio_path and model_loaded:
     c2.plotly_chart(plot_spectrogram(signal, sr),         use_container_width=True)
 
     c3, c4 = st.columns(2)
-    c3.plotly_chart(plot_mfcc(signal, sr),                use_container_width=True)
-    c4.plotly_chart(plot_mfcc_bar(features),              use_container_width=True)
-
-    c5, c6 = st.columns(2)
-    c5.plotly_chart(plot_confidence_gauge(conf, is_siren), use_container_width=True)
-    c6.plotly_chart(plot_spectral_rolloff(signal, sr),    use_container_width=True)
-
-    if len(st.session_state.history) > 1:
-        st.markdown('<div class="section-header">📋 Prediction History</div>', unsafe_allow_html=True)
-        st.plotly_chart(plot_history(st.session_state.history), use_container_width=True)
+    c3.plotly_chart(plot_mfcc_bar(features),              use_container_width=True)
+    c4.plotly_chart(plot_spectral_rolloff(signal, sr),    use_container_width=True)
 
 elif not model_loaded:
     st.error(f"⚠️ Could not load model: {model_error}")
