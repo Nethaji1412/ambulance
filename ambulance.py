@@ -90,7 +90,7 @@ DEMO_PATH  = os.path.join(BASE_DIR, "police-siren-sound-effect-240674.mp3")
 
 @st.cache_resource
 def load_siren_model():
-    return load_model("ambulance_siren_model.h5")
+    return load_model(ambulance_siren_model.h5)
 
 try:
     model = load_siren_model()
@@ -109,11 +109,16 @@ def extract_features(audio_path):
 LAYOUT = dict(paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(15,15,26,0.8)",
               font=dict(color="#a0bdd4", size=12), margin=dict(l=40, r=20, t=50, b=40))
 
+def hex_to_rgba(hex_color, alpha=0.15):
+    hex_color = hex_color.lstrip("#")
+    r, g, b = int(hex_color[0:2],16), int(hex_color[2:4],16), int(hex_color[4:6],16)
+    return f"rgba({r},{g},{b},{alpha})"
+
 def plot_waveform(signal, sr, color="#1d6fa4"):
     times = np.linspace(0, len(signal)/sr, num=len(signal))
     fig = go.Figure(go.Scatter(x=times, y=signal, mode="lines",
                                line=dict(color=color, width=0.8),
-                               fill="tozeroy", fillcolor=color+"26"))
+                               fill="tozeroy", fillcolor=hex_to_rgba(color)))
     fig.update_layout(title="🎵 Audio Waveform", xaxis_title="Time (s)",
                       yaxis_title="Amplitude", height=260,
                       xaxis=dict(gridcolor="#1e3a5f"),
