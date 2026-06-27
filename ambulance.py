@@ -10,8 +10,8 @@ import tempfile, os
 
 # ─── Page config ─────────────────────────────────────────────────────────────
 st.set_page_config(
-    page_title="🚑 Ambulance Siren Detector",
-    page_icon="🚑",
+    page_title="Ambulance Siren Detector",
+    page_icon="ambulance-logo-free-vector.png",
     layout="wide",
     initial_sidebar_state="expanded",
 )
@@ -238,7 +238,7 @@ with st.sidebar:
 # ─── Hero ────────────────────────────────────────────────────────────────────
 st.markdown("""
 <div class="hero-card">
-  <p class="hero-title">🚑 Ambulance Siren Detector</p>
+  <p class="hero-title">Ambulance Siren Detector</p>
   <p class="hero-subtitle">Upload audio — the model classifies it using deep learning on MFCC features</p>
   <span class="info-badge">TensorFlow / Keras</span>
   <span class="info-badge">Librosa</span>
@@ -285,7 +285,7 @@ if audio_path and model_loaded:
         raw_pred = float(model.predict(np.expand_dims(features, 0), verbose=0)[0][0])
 
     is_siren = raw_pred >= 0.5
-    label    = "🚨 SIREN" if is_siren else "✅ NON-SIREN"
+    label    = "🚨SIREN" if is_siren else "✅ NON-SIREN"
     conf     = raw_pred if is_siren else (1 - raw_pred)
     st.session_state.history.append({"name": audio_name, "label": label, "confidence": conf})
 
