@@ -1,7 +1,7 @@
 streamlit==1.58.0
 tensorflow==2.21.0
 librosa==0.11.0
-plotly==6.8.0
+plotly
 matplotlib==3.10.8
 numpy==2.4.4
 h5py==3.14.0
